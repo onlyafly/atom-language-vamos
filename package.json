@@ -1,12 +1,21 @@
 {
-  "name": "atom-language-vamos",
-  "version": "1.0.0",
-  "private": false,
-  "description": "Syntax highlighting for the Vamos language in the Atom text editor",
-  "repository": "https://github.com/onlyafly/atom-language-vamos",
-  "license": "MIT",
+  "name": "language-vamos",
+  "version": "0.19.1",
+  "description": "Vamos language support in Atom",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": "*",
+    "node": "*"
   },
-  "dependencies": {}
+  "homepage": "http://atom.github.io/language-vamos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/language-vamos"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atom/language-vamos/issues"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.10.1"
+  }
 }

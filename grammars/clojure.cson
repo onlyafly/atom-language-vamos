@@ -1,0 +1,345 @@
+'scopeName': 'source.vamos'
+'fileTypes': [
+  'v'
+  'vamos'
+]
+'foldingStartMarker': '\\(\\s*$'
+'foldingStopMarker': '^\\s*\\)'
+'name': 'Vamos'
+'patterns': [
+  {
+    'include': '#comment'
+  }
+  {
+    'include': '#shebang-comment'
+  }
+  {
+    'include': '#quoted-sexp'
+  }
+  {
+    'include': '#sexp'
+  }
+  {
+    'include': '#keyfn'
+  }
+  {
+    'include': '#string'
+  }
+  {
+    'include': '#vector'
+  }
+  {
+    'include': '#set'
+  }
+  {
+    'include': '#map'
+  }
+  {
+    'include': '#regexp'
+  }
+  {
+    'include': '#var'
+  }
+  {
+    'include': '#constants'
+  }
+  {
+    'include': '#dynamic-variables'
+  }
+  {
+    'include': '#metadata'
+  }
+  {
+    'include': '#namespace-symbol'
+  }
+  {
+    'include': '#symbol'
+  }
+  {
+    'include': '#whitespace'
+  }
+]
+'repository':
+  'comment':
+    'captures':
+      '1':
+        'name': 'punctuation.definition.comment.vamos'
+    'match': '(;).*$\\n?'
+    'name': 'comment.line.semicolon.vamos'
+  'constants':
+    'patterns': [
+      {
+        'match': '(nil)(?=(\\s|\\)|\\]|\\}))'
+        'name': 'constant.language.nil.vamos'
+      }
+      {
+        'match': '(true|false)'
+        'name': 'constant.language.boolean.vamos'
+      }
+      {
+        'match': '(-?\\d+/\\d+)'
+        'name': 'constant.numeric.ratio.vamos'
+      }
+      {
+        'match': '(-?\\d+[rR][0-9a-zA-Z]+)'
+        'name': 'constant.numeric.arbitrary-radix.vamos'
+      }
+      {
+        'match': '(-?0[xX][0-9a-fA-F]+)'
+        'name': 'constant.numeric.hexadecimal.vamos'
+      }
+      {
+        'match': '(-?0\\d+)'
+        'name': 'constant.numeric.octal.vamos'
+      }
+      {
+        'match': '(-?\\d+\\.\\d+([eE][+-]?\\d+)?M)'
+        'name': 'constant.numeric.bigdecimal.vamos'
+      }
+      {
+        'match': '(-?\\d+\\.\\d+([eE][+-]?\\d+)?)'
+        'name': 'constant.numeric.double.vamos'
+      }
+      {
+        'match': '(-?\\d+N)'
+        'name': 'constant.numeric.bigint.vamos'
+      }
+      {
+        'match': '(-?\\d+)'
+        'name': 'constant.numeric.long.vamos'
+      }
+      { # separating the pattern for reuse
+        'include': '#keyword'
+      }
+    ]
+  'keyword':
+    'match': '(?<=(\\s|\\(|\\[|\\{)):[a-zA-Z0-9\\#\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}|\\,))'
+    'name': 'constant.keyword.vamos'
+  'keyfn':
+    'patterns': [
+      {
+        'match': '(?<=(\\s|\\(|\\[|\\{))(if(-[-a-z\\?]*)?|when(-[-a-z]*)?|for(-[-a-z]*)?|cond|do|let(-[-a-z\\?]*)?|binding|loop|recur|fn|throw[a-z\\-]*|try|catch|finally|([a-z]*case))(?=(\\s|\\)|\\]|\\}))'
+        'name': 'storage.control.vamos'
+      }
+      {
+        'match': '(?<=(\\s|\\(|\\[|\\{))(declare-?|(in-)?ns|import|use|require|load|compile|(def[a-z\\-]*))(?=(\\s|\\)|\\]|\\}))'
+        'name': 'keyword.control.vamos'
+      }
+    ]
+  'dynamic-variables':
+    'match': '\\*[\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\d]+\\*'
+    'name': 'meta.symbol.dynamic.vamos'
+  'map':
+    'begin': '(\\{)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.section.map.begin.vamos'
+    'end': '(\\})'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.map.end.vamos'
+    'name': 'meta.map.vamos'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'metadata':
+    'patterns': [
+      {
+        'begin': '(\\^\\{)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.section.metadata.map.begin.vamos'
+        'end': '(\\})'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.section.metadata.map.end.vamos'
+        'name': 'meta.metadata.map.vamos'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'begin': '(\\^)'
+        'end': '(\\s)'
+        'name': 'meta.metadata.simple.vamos'
+        'patterns': [
+          {
+            'include': '#keyword'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  'quoted-sexp':
+    'begin': '([\'``]\\()'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.section.expression.begin.vamos'
+    'end': '(\\))(\\n)?'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.expression.end.vamos'
+      '2':
+        'name': 'meta.after-expression.vamos'
+    'name': 'meta.quoted-expression.vamos'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'regexp':
+    'begin': '#\\"'
+    'end': '\\"'
+    'name': 'string.regexp.vamos'
+    'patterns': [
+      {
+        'include': '#regexp_escaped_char'
+      }
+    ]
+  'regexp_escaped_char':
+    'match': '\\\\(\\")'
+    'name': 'string.regexp.vamos'
+  'set':
+    'begin': '(\\#\\{)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.section.set.begin.vamos'
+    'end': '(\\})'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.set.end.vamos'
+    'name': 'meta.set.vamos'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'sexp':
+    'begin': '(\\()'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.section.expression.begin.vamos'
+    'end': '(\\))(\\n)?'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.expression.end.vamos'
+      '2':
+        'name': 'meta.after-expression.vamos'
+    'name': 'meta.expression.vamos'
+    'patterns': [
+      {
+        'begin': '(?<=\\()(ns|def|def-|defn|defn-|defvar|defvar-|defmacro|defmacro-|deftest)\\s+'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.control.vamos'
+        'end': '(?=\\))'
+        'name': 'meta.definition.global.vamos'
+        'patterns': [
+          {
+            # there may be some metadata before an actual definition
+            'include': '#metadata'
+          }
+          { # dynamic variables are rendered diferently
+            'include': '#dynamic-variables'
+          }
+          {
+            # recognizing a symbol as being defined here
+            # copied and pasted from #symbol, screw it
+            'match': '([\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]+)'
+            'name': 'entity.global.vamos'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'include': '#keyfn'
+      }
+      {
+        'include': '#constants'
+      }
+      {
+        'include': '#vector'
+      }
+      {
+        'match': '(?<=\\()(.+?)(?=\\s|\\))'
+        'captures':
+          '1':
+            'name': 'entity.name.function.vamos'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'include': '$self'
+      }
+    ]
+  'shebang-comment':
+    'captures':
+      '1':
+        'name': 'punctuation.definition.comment.shebang.vamos'
+    'match': '^(\\#!).*$\\n?'
+    'name': 'comment.line.semicolon.vamos'
+  'string':
+    'begin': '(?<!\\\\)(")'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.string.begin.vamos'
+    'end': '(")'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.string.end.vamos'
+    'name': 'string.quoted.double.vamos'
+    'patterns': [
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.vamos'
+      }
+    ]
+  'namespace-symbol':
+    'patterns': [
+      { # copied from #symbol, plus a / at the end. Matches the "app/" part of
+        # "app/*config*"
+        'match': '([\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]+)/'
+        'captures':
+          '1':
+            'name': 'meta.symbol.namespace.vamos'
+      }
+    ]
+  'symbol':
+    'patterns': [
+      {
+        'match': '([\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]+)'
+        'name': 'meta.symbol.vamos'
+      }
+    ]
+  'var':
+    'match': '(?<=(\\s|\\(|\\[|\\{)\\#)\'[a-zA-Z0-9\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}))'
+    'name': 'meta.var.vamos'
+  'vector':
+    'begin': '(\\[)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.section.vector.begin.vamos'
+    'end': '(\\])'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.vector.end.vamos'
+    'name': 'meta.vector.vamos'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'whitespace':
+    'match': '\\s+$'
+    'name': 'invalid.trailing-whitespace'

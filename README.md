@@ -1,8 +1,10 @@
 # Vamos language support in Atom
 
-Adds syntax highlighting to Vamos files (.v) in Atom.
+Adds syntax highlighting to Vamos files in Atom.
 
-# History
+* Based on https://github.com/atom/language-clojure
+* Originally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)
+from the [Clojure TextMate bundle](https://github.com/mmcgrana/textmate-clojure).
 
-* February 2016: Adapted from https://github.com/backjo/language-scheme
-* March 2014: Originally converted from the [Scheme TextMate bundle](https://github.com/textmate/scheme.tmbundle)
+Contributions are greatly appreciated. Please fork this repository and open a
+pull request to add snippets, make grammar tweaks, etc.

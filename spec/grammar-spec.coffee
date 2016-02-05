@@ -3,7 +3,7 @@ describe "Vamos grammar", ->
 
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage("language-vamos")
+      atom.packages.activatePackage("atom-language-vamos")
 
     runs ->
       grammar = atom.grammars.grammarForScopeName("source.vamos")

@@ -1,19 +1,19 @@
 {
-  "name": "language-vamos",
-  "version": "0.19.1",
+  "name": "atom-language-vamos",
+  "version": "0.0.0",
   "description": "Vamos language support in Atom",
   "engines": {
     "atom": "*",
     "node": "*"
   },
-  "homepage": "http://atom.github.io/language-vamos",
+  "homepage": "http://github.com/onlyafly/atom-language-vamos",
   "repository": {
     "type": "git",
-    "url": "https://github.com/atom/language-vamos"
+    "url": "https://github.com/onlyafly/atom-language-vamos"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atom/language-vamos/issues"
+    "url": "http://github.com/onlyafly/atom-language-vamos/issues"
   },
   "devDependencies": {
     "coffeelint": "^1.10.1"

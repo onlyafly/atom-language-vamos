@@ -1,6 +1,8 @@
-# Scheme language support in Atom
+# Vamos language support in Atom
 
-Adds syntax highlighting to Scheme files in Atom.
+Adds syntax highlighting to Vamos files (.v) in Atom.
 
-Originally converted from the [Scheme TextMate bundle](https://github.com/textmate/scheme.tmbundle)
+# History
 
+* February 2016: Adapted from https://github.com/backjo/language-scheme
+* March 2014: Originally converted from the [Scheme TextMate bundle](https://github.com/textmate/scheme.tmbundle)

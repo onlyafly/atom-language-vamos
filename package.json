@@ -1,9 +1,9 @@
 {
-  "name": "language-scheme",
-  "version": "1.4.0",
+  "name": "atom-language-vamos",
+  "version": "1.0.0",
   "private": false,
-  "description": "A scheme syntax highlighter",
-  "repository": "https://github.com/backjo/language-scheme",
+  "description": "Syntax highlighting for the Vamos language in the Atom text editor",
+  "repository": "https://github.com/onlyafly/atom-language-vamos",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"

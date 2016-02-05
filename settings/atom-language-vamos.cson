@@ -1,4 +1,4 @@
-'.source.scheme':
+'.source.vamos':
   'editor':
     'commentStart': ';'
     'increaseIndentPattern': '^.*\\(.*[^)"]$'

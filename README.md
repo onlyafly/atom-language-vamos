@@ -8,3 +8,11 @@ from the [Clojure TextMate bundle](https://github.com/mmcgrana/textmate-clojure)
 
 Contributions are greatly appreciated. Please fork this repository and open a
 pull request to add snippets, make grammar tweaks, etc.
+
+## Publish new version
+
+    $ apm publish major
+
+    -OR-
+
+    $ apm publish minor
